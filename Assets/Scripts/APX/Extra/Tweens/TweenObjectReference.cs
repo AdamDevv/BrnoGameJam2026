@@ -1,0 +1,99 @@
+﻿using System;
+using System.Linq;
+using APX.Extra.DataStructures;
+using JetBrains.Annotations;
+using Sirenix.OdinInspector;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using APX.Extra.OdinExtensions;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
+#endif
+
+namespace APX.Extra.Tweens
+{
+    public class TweenObjectReference : ScriptableObject
+    {
+        [SerializeField]
+        [ValidateInput(nameof(IsValueTypeDefined), "Value type is not defined")]
+        [CustomValueDrawer("CustomValueTypeDrawer")]
+        private UType _ValueType;
+
+        public Type ValueType
+        {
+            get => _ValueType.Type;
+            internal set
+            {
+                _ValueType = value;
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(this);
+#endif
+            }
+        }
+
+        public bool IsValueTypeDefined => _ValueType.Type != null;
+
+        private Object _tempValue;
+        private bool _hasTempValue;
+
+        public void SetTempValue(Object value)
+        {
+            if (value == null)
+            {
+                Debug.LogWarning($"[{nameof(TweenObjectReference)}] Value is null for type {ValueType.Name}");
+                _tempValue = null;
+                _hasTempValue = false;
+                return;
+            }
+
+            if (!_ValueType.Type.IsInstanceOfType(value))
+            {
+                Debug.LogError($"[{nameof(TweenObjectReference)}] {value.GetType().Name} is not compatible with the defined value type {ValueType.Name}");
+                _tempValue = null;
+                _hasTempValue = false;
+                return;
+            }
+
+            _tempValue = value;
+            _hasTempValue = true;
+        }
+
+        public void ClearTempValue()
+        {
+            _tempValue = null;
+            _hasTempValue = false;
+        }
+
+        public bool TryGetTempValue(out Object target)
+        {
+            target = _tempValue;
+            return _hasTempValue;
+        }
+
+#if UNITY_EDITOR
+        [UsedImplicitly]
+        private UType CustomValueTypeDrawer(UType value, GUIContent label, Func<GUIContent, bool> callNextDrawer, InspectorProperty property)
+        {
+            value ??= new UType(null);
+            var icon = (Texture) GUIHelper.GetAssetThumbnail(null, value.Type, false);
+            TypeSelector.DrawSelectorDropdown(label, GUIHelper.TempContent($" {value.Type?.Name ?? "Undefined"}", icon, value.Type?.FullName), rect =>
+            {
+                var types = TweenEditorUtils.GetSupportedTargetTypes();
+                var selector = new TypeSelector(types, false);
+                selector.SelectionConfirmed += t =>
+                {
+                    var type = t.FirstOrDefault();
+                    value.Type = type;
+                    property.ForceMarkDirty();
+                };
+                selector.ShowInPopup(rect);
+                return selector;
+            });
+            return value;
+        }
+#endif
+    }
+}

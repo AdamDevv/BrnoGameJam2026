@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93a9bda1d154d0fa091b6a6a5b1d77b, type: 3}
+  m_Name: GlobalLocator
+  m_EditorClassIdentifier: 
+  _Records:
+  - _Type:
+      _ClassRef: APX.Audio.Services.DefinitionProviders.EventSFXDefinitionsProvider,
+        APX
+    _Object: {fileID: 11400000, guid: 484fec06846b3224c812647673f9cca9, type: 2}
+  - _Type:
+      _ClassRef: APGame.Services.Settings.GameplaySettings, APGame
+    _Object: {fileID: 11400000, guid: a0f8e96d998792c4eba66e7ec773f86a, type: 2}

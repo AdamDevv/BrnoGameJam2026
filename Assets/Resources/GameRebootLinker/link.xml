@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="APX, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="APX.Extra.Tweens.Ll">
+      <method name="OnGameReboot" />
+    </type>
+    <type fullname="APX.Extra.Data.EnhancedScriptableObject">
+      <method name="OnReboot" />
+    </type>
+  </assembly>
+</linker>

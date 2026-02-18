@@ -1,0 +1,20 @@
+{
+    "name": "APX.Extra.OdinExtensions.Editor",
+    "rootNamespace": "",
+    "references": [
+        "APX",
+        "Unity.EditorCoroutines.Editor",
+        "Unity.Addressables"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

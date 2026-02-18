@@ -1,0 +1,20 @@
+{
+    "name": "APGame",
+    "rootNamespace": "APGame",
+    "references": [
+        "APX",
+        "Unity.Cinemachine",
+        "UniTask",
+        "UniTask.DOTween",
+        "ShapesRuntime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
