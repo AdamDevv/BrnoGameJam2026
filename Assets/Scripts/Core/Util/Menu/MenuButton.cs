@@ -14,7 +14,7 @@ namespace APGame.Util.Menu
             base.OnClick();
             if (_triggerMenuButtonClickEvent)
             {
-                EventBus.Trigger<MenuButtonClickEvent>();
+                EventBus.Trigger(new MenuButtonClickEvent());
             }
         }
     }

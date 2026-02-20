@@ -1,6 +1,11 @@
 using APX.Managers.GameObjects;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace APX.Debugging
 {
@@ -11,7 +16,7 @@ namespace APX.Debugging
 
         private void Update()
         {
-            #if UNITY_EDITOR
+            #if (UNITY_EDITOR || DEVELOPMENT_BUILD)
 
             HandleSpeedup();
             HandleRestart();
@@ -37,6 +42,8 @@ namespace APX.Debugging
             if (Input.GetKeyDown(KeyCode.R))
             {
                 int targetScene;
+
+                DOTween.KillAll();
 
                 if (Input.GetKey(KeyCode.LeftControl))
                 {

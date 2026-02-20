@@ -96,5 +96,11 @@ namespace APX.Extra.Misc
             if (list == null) return false;
             return 0 <= index && index < list.Count;
         }
+
+        public static T SelectRandom<T>(this IReadOnlyList<T> list)
+        {
+            if (list == null || list.Count == 0) return default;
+            return list[UnityEngine.Random.Range(0, list.Count)];
+        }
     }
 }

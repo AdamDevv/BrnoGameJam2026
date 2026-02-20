@@ -1,46 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using APX.Events.Data;
 using APX.Util;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+// ReSharper disable MemberHidesStaticFromOuterClass
+
 namespace APX.Events
 {
     public static class EventBus
     {
-        private interface IHandlerData
-        {
-            object HandlerAsObject { get; }
-            bool TriggerOnce { get; }
-
-            void Trigger(object @event);
-        }
-
-        private class HandlerData<T> : IHandlerData
-        {
-            public object HandlerAsObject => Handler;
-            public Action<T> Handler { get; }
-            public bool TriggerOnce { get; }
-
-            public HandlerData(Action<T> handler, bool triggerOnce)
-            {
-                Handler = handler;
-                TriggerOnce = triggerOnce;
-            }
-
-            void IHandlerData.Trigger(object @event) => Handler((T)@event);
-        }
-
         private static readonly Dictionary<Type, List<IHandlerData>> _handlersDictionary = new();
-        private static readonly Dictionary<Type, object> _eventInstancePool = new();
 
         public static int HandlersCount { get; private set; }
 
         public static void Subscribe(Type type, Action<object> handler)
+        {
+            SubscribeInternal(type, handler);
+        }
+
+        public static void Subscribe(Type type, Func<object, UniTaskVoid> handler)
         {
             SubscribeInternal(type, handler);
         }
@@ -50,12 +35,27 @@ namespace APX.Events
             SubscribeInternal(typeof(T), handler);
         }
 
+        public static void Subscribe<T>(Func<T, UniTaskVoid> handler)
+        {
+            SubscribeInternal(typeof(T), handler);
+        }
+
         public static void SubscribeOnce(Type type, Action<object> handler)
         {
             SubscribeInternal(type, handler, true);
         }
 
+        public static void SubscribeOnce(Type type, Func<object, UniTaskVoid> handler)
+        {
+            SubscribeInternal(type, handler, true);
+        }
+
         public static void SubscribeOnce<T>(Action<T> handler)
+        {
+            SubscribeInternal(typeof(T), handler, true);
+        }
+
+        public static void SubscribeOnce<T>(Func<T, UniTaskVoid> handler)
         {
             SubscribeInternal(typeof(T), handler, true);
         }
@@ -72,17 +72,33 @@ namespace APX.Events
             HandlersCount++;
         }
 
+        private static void SubscribeInternal<T>(Type type, Func<T, UniTaskVoid> handler, bool triggerOnce = false)
+        {
+            if (!_handlersDictionary.TryGetValue(type, out var handlers))
+            {
+                handlers = new();
+                _handlersDictionary.Add(type, handlers);
+            }
+
+            handlers.Add(new HandlerDataUniTask<T>(handler, triggerOnce));
+            HandlersCount++;
+        }
+
         public static void Unsubscribe<T>(Action<T> handler)
         {
             UnsubscribeInternal(typeof(T), handler);
         }
 
-        public static void Unsubscribe(Type type, Action<object> handler)
+        public static void Unsubscribe<T>(Func<T, UniTaskVoid> handler)
         {
-            UnsubscribeInternal(type, handler);
+            UnsubscribeInternal(typeof(T), handler);
         }
 
-        private static void UnsubscribeInternal<T>(Type type, Action<T> handler)
+        public static void Unsubscribe(Type type, Action<object> handler) => UnsubscribeInternal(type, handler);
+
+        public static void Unsubscribe(Type type, Func<object, UniTaskVoid> handler) => UnsubscribeInternal(type, handler);
+
+        private static void UnsubscribeInternal<THandler>(Type type, THandler handler)
         {
             if (!_handlersDictionary.TryGetValue(type, out List<IHandlerData> handlers))
             {
@@ -91,7 +107,7 @@ namespace APX.Events
 
             for (int i = handlers.Count - 1; i >= 0; i--)
             {
-                if (ReferenceEquals(handlers[i].HandlerAsObject, handler))
+                if (handler.Equals(handlers[i].HandlerAsObject))
                 {
                     handlers.RemoveAt(i);
                     HandlersCount--;
@@ -100,34 +116,20 @@ namespace APX.Events
             }
         }
 
-        public static void Trigger<T>() => Trigger(typeof(T));
-
         public static void Trigger<T>(T @event) => Trigger(typeof(T), @event);
 
-        public static void Trigger(object @event) => Trigger(@event.GetType(), @event);
-
-        public static void Trigger(Type type)
+        public static void Trigger(object @event)
         {
-            if (!_eventInstancePool.TryGetValue(type, out object @event))
-            {
-                try
-                {
-                    @event = type.CreateDefaultValue();
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"[{nameof(EventBus)}] Creating default event instance error: {e.Message}");
-                    throw;
-                }
+            if (@event is null) throw new ArgumentNullException(nameof(@event));
 
-                _eventInstancePool.Add(type, @event);
-            }
-
-            Trigger(type, @event);
+            Trigger(@event.GetType(), @event);
         }
 
         public static void Trigger(Type type, object @event)
         {
+            if (type is null) throw new ArgumentNullException(nameof(type));
+            if (@event is null) throw new ArgumentNullException(nameof(@event));
+
             if (!_handlersDictionary.TryGetValue(type, out var handlers))
             {
                 return;
@@ -146,7 +148,7 @@ namespace APX.Events
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError(e);
+                    Debug.LogError($"Error while triggering event {@event}:\n{e}");
                 }
             }
         }
@@ -154,7 +156,6 @@ namespace APX.Events
         public static void Reset()
         {
             _handlersDictionary.Clear();
-            _eventInstancePool.Clear();
             HandlersCount = 0;
         }
 

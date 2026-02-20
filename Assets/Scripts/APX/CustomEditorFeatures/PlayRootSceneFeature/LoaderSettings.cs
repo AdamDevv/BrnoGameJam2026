@@ -23,19 +23,19 @@ namespace APX.CustomEditorFeatures.PlayRootSceneFeature
             set => Instance._RootScene = value;
         }
 
-        private static string SettingsPath => "Project/APX/Settings/Loader";
+        private const string SETTINGS_PATH = "Project/APX/Settings/Loader";
         private static IEnumerable<string> Keywords => new[] { "Loader", "Loading", "Game", "RootScene" };
 
         [MenuItem("APX/Settings/Loader")]
         public static void OpenLoaderSettings()
         {
-            SettingsService.OpenProjectSettings(SettingsPath);
+            SettingsService.OpenProjectSettings(SETTINGS_PATH);
         }
 
         [SettingsProvider]
         protected static SettingsProvider RegisterSettingsProvider()
         {
-            return Instance == null ? null : AssetSettingsProvider.CreateProviderFromObject(SettingsPath, Instance, Keywords);
+            return Instance == null ? null : AssetSettingsProvider.CreateProviderFromObject(SETTINGS_PATH, Instance, Keywords);
         }
     }
 }
