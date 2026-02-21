@@ -30,7 +30,7 @@ namespace APGame.Managers
             GameManager.Instance.IsInputEnabled = false;
             _currentLevelGoal = null;
 
-            if (ClockManager.Instance.Clock)
+            if (ClockManager.Instance.Clock is not null)
             {
                 var seq = DOTween.Sequence()
                     .Append(ClockManager.Instance.Clock.transform.DOScale(Vector3.one * 1.05f, 0.08f).SetEase(Ease.OutCubic))
@@ -40,7 +40,7 @@ namespace APGame.Managers
             }
 
             // Hide animations
-            if (ClockManager.Instance.Clock)
+            if (ClockManager.Instance.Clock is not null)
             {
                 UIManager.Instance.HideLevelText();
                 await ClockManager.Instance.Clock.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).ToUniTask(cancellationToken: destroyCancellationToken);

@@ -1,6 +1,5 @@
 ﻿using System;
 using APGame.Abstractions;
-using APGame.InGame;
 using APX.Util.OdinAttributes;
 using UnityEngine;
 
@@ -11,10 +10,10 @@ namespace APGame.Models.DTO
     {
         [SerializeField] private string _Comment;
         [SerializeReference] private ILevelGoal _LevelGoal;
-        [SerializeField] [RequiredAsset] private Clock _ClockPrefab;
+        [SerializeField] [RequiredAsset] private GameObject _ClockPrefab;
 
         public ILevelGoal LevelGoal => _LevelGoal;
 
-        public Clock ClockPrefab => _ClockPrefab;
+        public GameObject ClockPrefab => _ClockPrefab;
     }
 }

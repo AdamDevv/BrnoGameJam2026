@@ -40,11 +40,16 @@ namespace APGame.InGame
             UpdateValueByRotation();
         }
 
+        private void Start()
+        {
+            _clock = ClockManager.Instance.Clock as Clock;
+        }
+
         private void OnMouseDown()
         {
             if (!GameManager.Instance.IsInputEnabled) return;
 
-            if (_ClockHandType == ClockHandType.Hour && ClockManager.Instance.Clock.ClockBehaviourType == ClockBehaviourType.HourDependent)
+            if (_ClockHandType == ClockHandType.Hour && _clock.ClockBehaviourType == ClockBehaviourType.HourDependent)
             {
                 float normalizedAngle = 360 - transform.rotation.eulerAngles.z + 360 % 360;
                 normalizedAngle %= _positionAngle;
@@ -74,10 +79,10 @@ namespace APGame.InGame
             switch (_ClockHandType)
             {
                 case ClockHandType.Minute:
-                    ClockManager.Instance.Clock.SetTimeUsingMinuteHand(Value);
+                    _clock.SetTimeUsingMinuteHand(Value);
                     break;
                 case ClockHandType.Hour:
-                    ClockManager.Instance.Clock.SetTimeUsingHourHand(Value, normalizedAngle);
+                    _clock.SetTimeUsingHourHand(Value, normalizedAngle);
                     break;
             }
         }

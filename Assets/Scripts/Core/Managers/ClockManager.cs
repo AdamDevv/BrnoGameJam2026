@@ -1,36 +1,29 @@
-﻿using APGame.InGame;
+﻿using APGame.Abstractions;
 using APX.Managers.GameObjects;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace APGame.Managers
 {
     public class ClockManager : ASingleton<ClockManager>
     {
-        [SerializeField] [Required] private Clock _Clock;
-
-        public Clock Clock => _Clock;
+        public IClock Clock { get; private set; }
 
         protected override void Initialize()
         {
             base.Initialize();
-            if (_Clock)
-            {
-                Destroy(_Clock.gameObject);
-                _Clock = null;
-            }
+            Destroy(GameObject.Find("DefaultClock"));
         }
 
-        public void UpdateClockObject(Clock clockPrefab)
+        public void UpdateClockObject(GameObject clockPrefab)
         {
-            if (_Clock)
+            if (Clock is not null)
             {
-                Destroy(_Clock.gameObject);
-                _Clock = null;
+                Destroy(Clock.gameObject);
+                Clock = null;
             }
 
-            _Clock = Instantiate(clockPrefab);
-            _Clock.transform.transform.localScale = Vector3.zero;
+            Clock = Instantiate(clockPrefab).GetComponent<IClock>();
+            Clock.transform.localScale = Vector3.zero;
         }
     }
 }

@@ -21,8 +21,8 @@ namespace APGame.LevelFeatures.RearrangedNumbers
 
         public override void Update()
         {
-            var minuteDiff = Mathf.Abs(ClockManager.Instance.Clock.MinuteHand.ValueSmooth - 40) / 60;
-            var hourDiff = Mathf.Abs(ClockManager.Instance.Clock.HourHand.ValueSmooth - 11) / 12;
+            var minuteDiff = Mathf.Abs(_clock.MinuteHand.ValueSmooth - 40) / 60;
+            var hourDiff = Mathf.Abs(_clock.HourHand.ValueSmooth - 11) / 12;
 
             if (minuteDiff < MINUTE_TOLERANCE_PERCENTAGE && hourDiff < HOUR_TOLERANCE_PERCENTAGE && !Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.L))
             {

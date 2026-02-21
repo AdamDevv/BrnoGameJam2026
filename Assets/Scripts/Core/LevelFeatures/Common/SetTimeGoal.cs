@@ -1,4 +1,5 @@
 ﻿using APGame.Abstractions;
+using APGame.InGame;
 using APGame.Managers;
 using UnityEngine;
 
@@ -14,10 +15,13 @@ namespace APGame.LevelFeatures.Common
 
         [SerializeField] protected int _TargetHour;
         [SerializeField] protected int _TargetMinute;
+        
+        protected Clock _clock;
 
         public virtual void Initialize()
         {
-            ClockManager.Instance.Clock.SetTime(_StartHour, _StartMinute);
+            _clock = ClockManager.Instance.Clock as Clock;
+            _clock!.SetTime(_StartHour, _StartMinute);
         }
 
         public virtual void Update()
@@ -30,13 +34,13 @@ namespace APGame.LevelFeatures.Common
 
         protected void FinishLevel()
         {
-            ClockManager.Instance.Clock.SetTime(_TargetHour, _TargetMinute);
+            // _clock.SetTime(_TargetHour, _TargetMinute);
             LevelManager.Instance.SetLevelGoalFinished();
         }
 
         protected bool IsTimeWithinTolerance()
         {
-            int currentTotalMinutes = ClockManager.Instance.Clock.HourHand.Value * 60 + ClockManager.Instance.Clock.MinuteHand.Value;
+            int currentTotalMinutes = _clock.HourHand.Value * 60 + _clock.MinuteHand.Value;
             int targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
             return (Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0)) || Input.GetKeyDown(KeyCode.L);
         }

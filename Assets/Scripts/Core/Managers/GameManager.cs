@@ -1,3 +1,4 @@
+using APGame.InGame;
 using APX.Managers.GameObjects;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -30,13 +31,13 @@ namespace APGame.Managers
 
         private void Update()
         {
-            if (ClockManager.Instance.Clock)
+            if (ClockManager.Instance.Clock is Clock clock)
             {
-                _DebugTimeText.text = $"{ClockManager.Instance.Clock.HourHand.Value:00}:{ClockManager.Instance.Clock.MinuteHand.Value:00}";
+                _DebugTimeText.text = $"{clock.HourHand.Value:00}:{clock.MinuteHand.Value:00}";
             }
             else
             {
-                _DebugTimeText.text = "";
+                _DebugTimeText.text = "--:--";
             }
         }
     }

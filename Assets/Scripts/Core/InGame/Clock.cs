@@ -1,11 +1,12 @@
 using System;
+using APGame.Abstractions;
 using APGame.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace APGame.InGame
 {
-    public class Clock : MonoBehaviour
+    public class Clock : MonoBehaviour, IClock
     {
         [SerializeField] [Required] private ClockBehaviourType _ClockBehaviourType;
         [SerializeField] [Required] private ClockHand _MinuteHand;

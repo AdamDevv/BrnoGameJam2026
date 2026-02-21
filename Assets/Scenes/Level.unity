@@ -559,17 +559,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &591838476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
-  m_PrefabInstance: {fileID: 6732896908165636465}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d918446fcb070be40a4ff2972e481929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &614267088
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df51fa221c5468caa3272615b6944d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Clock: {fileID: 591838476}
 --- !u!1 &1155766232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,9 +1858,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
       propertyPath: m_Name
-      value: Clock
+      value: DefaultClock
       objectReference: {fileID: 0}
     - target: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032147033952389400, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
