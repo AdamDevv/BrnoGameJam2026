@@ -1,4 +1,5 @@
-﻿using APGame.InGame;
+﻿using System;
+using APGame.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -15,20 +16,16 @@ namespace APGame.LevelFeatures.StampLevel
         private void Start()
         {
             // _startPos = transform.localPosition;
-            
-            // SUPER ULTRA DIRTY BUG FIX
-            _startPos = new(-1.59f, -2.59f); 
 
-            UniTask.Void(async cancellationToken => {
-                float t = 0;
-                while (t < 1f)
-                {
-                    _startPos = new(-1.59f, -2.59f);
-                    transform.localPosition = _startPos;
-                    t += Time.deltaTime;
-                    await UniTask.Yield(cancellationToken);
-                }
-            }, destroyCancellationToken);
+            // SUPER ULTRA DIRTY BUG FIX
+            _startPos = new(-1.59f, -2.59f);
+        }
+
+        private void Update()
+        {
+            if (IsDetached) return;
+
+            transform.localPosition = new(-1.59f, -2.59f);
         }
 
         private void OnMouseDown()
