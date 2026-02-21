@@ -36,13 +36,13 @@ namespace APGame.Managers
                     .Append(ClockManager.Instance.Clock.transform.DOScale(Vector3.one * 1.05f, 0.08f).SetEase(Ease.OutCubic))
                     .Append(ClockManager.Instance.Clock.transform.DOScale(Vector3.one * 1.00f, 0.2f).SetEase(Ease.OutCubic));
                 seq.ToUniTask(cancellationToken: cancellationToken).Forget();
-                await UniTask.WaitForSeconds(1.5f, cancellationToken: cancellationToken);
+                await UniTask.WaitForSeconds(0.6f, cancellationToken: cancellationToken);
             }
 
             // Hide animations
             if (ClockManager.Instance.Clock)
             {
-                _ = UIManager.Instance.HideLevelText();
+                UIManager.Instance.HideLevelText();
                 await ClockManager.Instance.Clock.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).ToUniTask(cancellationToken: destroyCancellationToken);
             }
 
@@ -55,7 +55,7 @@ namespace APGame.Managers
             UIManager.Instance.LevelText.text = _currentLevelGoal!.GetLevelText();
 
             // Show animations
-            _ = UIManager.Instance.ShowLevelText();
+            UIManager.Instance.ShowLevelText();
             await ClockManager.Instance.Clock.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).ToUniTask(cancellationToken: destroyCancellationToken);
 
             await UniTask.WaitForSeconds(0.5f, cancellationToken: cancellationToken);
