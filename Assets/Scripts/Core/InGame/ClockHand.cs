@@ -7,11 +7,24 @@ namespace APGame.InGame
 {
     public class ClockHand : MonoBehaviour
     {
-        public int DisplayedValue { get; private set; }
+        public int Value
+        {
+            get => _value;
+            private set
+            {
+                PreviousValue = _value;
+                _value = value;
+            }
+        }
+
+        public int PreviousValue { get; private set; }
 
         [SerializeField] private ClockHandType _ClockHandType;
         private int _positionCount;
         private int _positionAngle;
+        private Clock _clock;
+        private int _value;
+        private float _currentDragAngleOffset;
 
         private void Start()
         {
@@ -22,18 +35,23 @@ namespace APGame.InGame
                 _ => throw new ArgumentOutOfRangeException()
             };
             _positionAngle = 360 / _positionCount;
+            UpdateValueByRotation();
+        }
 
-            switch (_ClockHandType)
+        private void OnMouseDown()
+        {
+            if (_ClockHandType == ClockHandType.Hour && ClockManager.Instance.Clock.ClockBehaviourType == ClockBehaviourType.HourDependent)
             {
-                case ClockHandType.Minute:
-                    GameManager.Instance.MinuteClockHand = this;
-                    break;
-                case ClockHandType.Hour:
-                    GameManager.Instance.HourClockHand = this;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                float normalizedAngle = 360 - transform.rotation.eulerAngles.z + 360 % 360;
+                normalizedAngle %= _positionAngle;
+                normalizedAngle -= 15;
+                _currentDragAngleOffset = normalizedAngle;
             }
+        }
+
+        private void OnMouseUp()
+        {
+            _currentDragAngleOffset = 0;
         }
 
         private void OnMouseDrag()
@@ -41,23 +59,54 @@ namespace APGame.InGame
             Vector2 mousePos = Input.mousePosition;
             Vector2 worldMousePos = CameraManager.MainCamera.ScreenToWorldPoint(mousePos);
             Vector2 direction = worldMousePos - (Vector2)transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90 + _currentDragAngleOffset;
+
+            // Snap values
             // angle = Mathf.Round(angle / _positionAngle) * _positionAngle;
+
             transform.rotation = Quaternion.Euler(0, 0, angle);
 
-            UpdateDisplayedValue();
+            UpdateValueByRotation();
+
+            float normalizedAngle = 360 - transform.rotation.eulerAngles.z + 360 % 360;
+
+            switch (_ClockHandType)
+            {
+                case ClockHandType.Minute:
+                    ClockManager.Instance.Clock.SetTimeUsingMinuteHand(Value);
+                    break;
+                case ClockHandType.Hour:
+                    ClockManager.Instance.Clock.SetTimeUsingHourHand(Value, normalizedAngle);
+                    break;
+            }
         }
 
-        private void UpdateDisplayedValue()
+        private void UpdateValueByRotation()
         {
             float normalized = 360 - transform.rotation.eulerAngles.z + 360 % 360;
-            DisplayedValue = Mathf.FloorToInt((normalized / 360f) * _positionCount);
+            Value = Mathf.FloorToInt((normalized / 360f) * _positionCount);
         }
 
-        public void SetDisplayedValue(int targetHour)
+        private void UpdateRotationByValue()
         {
-            DisplayedValue = targetHour % _positionCount;
-            float angle = 360 - ((float)DisplayedValue / _positionCount) * 360 + 360 % 360;
+            float normalizedValue = Value % _positionCount;
+            float angle = 360 - (normalizedValue / _positionCount) * 360 + 360 % 360;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
+        public void SetValue(int value)
+        {
+            Value = value % _positionCount;
+
+            UpdateRotationByValue();
+        }
+
+        public void SetValueSmooth(float targetValue)
+        {
+            Value = Mathf.FloorToInt(targetValue) % _positionCount;
+
+            float normalizedValue = targetValue % _positionCount;
+            float angle = 360 - (normalizedValue / _positionCount) * 360 + 360 % 360;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }

@@ -1,4 +1,5 @@
-﻿using APX.Managers.GameObjects;
+﻿using APGame.InGame;
+using APX.Managers.GameObjects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,8 +9,8 @@ namespace APGame.Managers
     {
         [SerializeField] 
         [Required]
-        private Transform _Clock;
+        private Clock _Clock;
 
-        public Transform Clock => _Clock;
+        public Clock Clock => _Clock;
     }
 }

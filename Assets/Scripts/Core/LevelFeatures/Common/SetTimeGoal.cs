@@ -18,22 +18,21 @@ namespace APGame.LevelFeatures.Common
 
         public void Initialize()
         {
-            GameManager.Instance.HourClockHand.SetDisplayedValue(_StartHour);
-            GameManager.Instance.MinuteClockHand.SetDisplayedValue(_StartMinute);
+            ClockManager.Instance.Clock.SetTime(_StartHour, _StartMinute);
         }
 
         public void Update()
         {
-            // var currentTotalMinutes = GameManager.Instance.HourClockHand.DisplayedValue * 60 + GameManager.Instance.MinuteClockHand.DisplayedValue;
+            // var currentTotalMinutes = ClockManager.Instance.Clock.HourHand.Value * 60 + ClockManager.Instance.Clock.MinuteHand.Value;
             // var targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
             // if (Mathf.Abs(currentTotalMinutes - targetTotalMinutes) > TOLERANCE)
             // {
             //     _ = LevelManager.Instance.SetLevelGoalFinished();
             // }
 
-            if (GameManager.Instance.HourClockHand.DisplayedValue == _TargetHour && GameManager.Instance.MinuteClockHand.DisplayedValue == _TargetMinute)
+            if (ClockManager.Instance.Clock.HourHand.Value == _TargetHour && ClockManager.Instance.Clock.MinuteHand.Value == _TargetMinute)
             {
-                _ = LevelManager.Instance.SetLevelGoalFinished();
+                // _ = LevelManager.Instance.SetLevelGoalFinished();
             }
         }
 
