@@ -23,6 +23,7 @@ namespace APGame.Managers
             }
 
             Clock = Instantiate(clockPrefab).GetComponent<IClock>();
+            Clock.transform.position += Vector3.up * 0.1f;
             Clock.transform.localScale = Vector3.zero;
         }
     }
