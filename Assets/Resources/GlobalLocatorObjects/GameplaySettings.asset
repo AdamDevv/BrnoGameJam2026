@@ -15,8 +15,9 @@ MonoBehaviour:
   _Levels:
   - rid: 5389068696352456783
   - rid: 5389068696352456785
-  - rid: 5389068696352456787
   - rid: 5389068714943184974
+  - rid: 5389068696352456787
+  - rid: 5389068714943184976
   references:
     version: 2
     RefIds:
@@ -47,11 +48,11 @@ MonoBehaviour:
         _Comment: Set time with rearranged numbers
         _LevelGoal:
           rid: 5389068714943184973
-        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _ClockPrefab: {fileID: 8428571735509381671, guid: 32995c61965792449b37542a769b7238, type: 3}
     - rid: 5389068696352456792
       type: {class: RemoveStampGoal, ns: APGame.LevelFeatures.StampLevel, asm: APGame}
       data:
-        _StartHour: 1
+        _StartHour: 11
         _StartMinute: 38
         _TargetHour: 7
         _TargetMinute: 50
@@ -65,7 +66,7 @@ MonoBehaviour:
     - rid: 5389068714943184974
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
-        _Comment: 
+        _Comment: Rotate clock disc
         _LevelGoal:
           rid: 5389068714943184975
         _ClockPrefab: {fileID: 1107895363258296150, guid: 3af21d27856deec4ab6d4d67f29d127d, type: 3}
@@ -75,3 +76,17 @@ MonoBehaviour:
         _TargetClockRotation: 192
         _DisplayedTargetHour: 4
         _DisplayedTargetMinute: 0
+    - rid: 5389068714943184976
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _Comment: Drag & drop numbers
+        _LevelGoal:
+          rid: 5389068714943184977
+        _ClockPrefab: {fileID: 8875691682495472312, guid: a21363b0da2e5a14b8454066a7079dbe, type: 3}
+    - rid: 5389068714943184977
+      type: {class: DragDropNumbersGoal, ns: APGame.LevelFeatures.DragDropNumbers, asm: APGame}
+      data:
+        _RequiredHourNumber: 4
+        _RequiredMinuteNumber: 8
+        _StartHourNumberPosition: 9
+        _StartMinuteNumberPosition: 5

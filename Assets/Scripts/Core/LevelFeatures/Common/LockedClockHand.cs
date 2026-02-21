@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace APGame.LevelFeatures.RotateClock
+namespace APGame.LevelFeatures.Common
 {
     public class LockedClockHand : MonoBehaviour
     {
@@ -10,6 +10,13 @@ namespace APGame.LevelFeatures.RotateClock
 
         private void Start()
         {
+            _startRot = transform.rotation.eulerAngles;
+        }
+        
+        public void SetRotation(float angle)
+        {
+            angle = 360 - (angle + 360 % 360);
+            transform.rotation = Quaternion.Euler(0, 0, angle);
             _startRot = transform.rotation.eulerAngles;
         }
 

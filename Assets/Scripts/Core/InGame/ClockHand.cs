@@ -89,7 +89,7 @@ namespace APGame.InGame
 
         private void UpdateValueByRotation()
         {
-            float normalized = 360 - transform.rotation.eulerAngles.z + 360 % 360;
+            float normalized = Mathf.Repeat(360f - transform.rotation.eulerAngles.z, 360f); // 360 - transform.rotation.eulerAngles.z + 360 % 360;
             Value = Mathf.FloorToInt((normalized / 360f) * _positionCount);
         }
 
