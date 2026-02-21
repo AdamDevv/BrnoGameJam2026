@@ -12,4 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d07201f69634998b758edf9f37da7cc, type: 3}
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
-  _Name: This is string from gameplay settings!!!
+  _Levels:
+  - rid: 5389068696352456780
+  - rid: 5389068696352456781
+  - rid: 5389068696352456782
+  references:
+    version: 2
+    RefIds:
+    - rid: 5389068696352456780
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _TargetHour: 9
+        _TargetMinute: 0
+    - rid: 5389068696352456781
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _TargetHour: 7
+        _TargetMinute: 0
+    - rid: 5389068696352456782
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _TargetHour: 11
+        _TargetMinute: 45

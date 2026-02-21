@@ -7,6 +7,8 @@ namespace APGame.Managers
 {
     public class CameraManager : ASingleton<CameraManager>
     {
+        public static Camera MainCamera => Instance._camera;
+        
         private Camera _camera;
         private CinemachineCamera _cinemachineCamera;
         private CinemachineBasicMultiChannelPerlin _multiChannelPerlin;
