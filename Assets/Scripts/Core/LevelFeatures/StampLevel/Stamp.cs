@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace APGame.LevelFeatures.StampLevel
@@ -13,6 +14,11 @@ namespace APGame.LevelFeatures.StampLevel
         private void Start()
         {
             _startPos = transform.localPosition;
+            
+            UniTask.Void(async cancellationToken => {
+                await UniTask.DelayFrame(1, cancellationToken: cancellationToken);
+                _startPos = transform.localPosition;
+            },destroyCancellationToken);
         }
 
         private void OnMouseDown()
