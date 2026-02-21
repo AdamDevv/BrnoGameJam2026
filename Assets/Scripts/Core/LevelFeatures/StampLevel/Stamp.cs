@@ -15,12 +15,20 @@ namespace APGame.LevelFeatures.StampLevel
         private void Start()
         {
             // _startPos = transform.localPosition;
-            _startPos = new(-1.59f, -2.59f); // DIRTY DIRTY DIRTY BUG FIX
             
+            // SUPER ULTRA DIRTY BUG FIX
+            _startPos = new(-1.59f, -2.59f); 
+
             UniTask.Void(async cancellationToken => {
-                await UniTask.DelayFrame(1, cancellationToken: cancellationToken);
-                transform.localPosition = _startPos;
-            },destroyCancellationToken);
+                float t = 0;
+                while (t < 1f)
+                {
+                    _startPos = new(-1.59f, -2.59f);
+                    transform.localPosition = _startPos;
+                    t += Time.deltaTime;
+                    await UniTask.Yield(cancellationToken);
+                }
+            }, destroyCancellationToken);
         }
 
         private void OnMouseDown()
@@ -28,7 +36,7 @@ namespace APGame.LevelFeatures.StampLevel
             if (IsDetached) return;
 
             transform.DOKill();
-            
+
             if (_clickCount < 3)
             {
                 transform.position = _startPos;
