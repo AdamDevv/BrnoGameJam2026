@@ -37,7 +37,7 @@ namespace APGame.Managers
                 LevelManager.Instance.DebugSetLevel(targetIndex);
             }
 
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L) && IsInputEnabled)
             {
                 LevelManager.Instance.SetLevelGoalFinished();
             }
