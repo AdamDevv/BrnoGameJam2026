@@ -1872,6 +1872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock
       objectReference: {fileID: 0}
+    - target: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

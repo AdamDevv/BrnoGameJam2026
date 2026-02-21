@@ -1,11 +1,10 @@
-﻿using System;
-using APGame.Abstractions;
+﻿using APGame.Abstractions;
 using APGame.Managers;
 using UnityEngine;
 
 namespace APGame.LevelFeatures.Common
 {
-    [Serializable]
+    [System.Serializable]
     public class SetTimeGoal : ILevelGoal
     {
         private const int TOLERANCE_MINUTES = 2;
@@ -16,21 +15,30 @@ namespace APGame.LevelFeatures.Common
         [SerializeField] private int _TargetHour;
         [SerializeField] private int _TargetMinute;
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             ClockManager.Instance.Clock.SetTime(_StartHour, _StartMinute);
         }
 
-        public void Update()
+        public virtual void Update()
+        {
+            if (IsTimeWithinTolerance())
+            {
+                FinishLevel();
+            }
+        }
+
+        protected void FinishLevel()
+        {
+            ClockManager.Instance.Clock.SetTime(_TargetHour, _TargetMinute);
+            LevelManager.Instance.SetLevelGoalFinished();
+        }
+
+        protected bool IsTimeWithinTolerance()
         {
             int currentTotalMinutes = ClockManager.Instance.Clock.HourHand.Value * 60 + ClockManager.Instance.Clock.MinuteHand.Value;
             int targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
-            
-            if ((Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0)) || Input.GetKeyDown(KeyCode.L))
-            {
-                ClockManager.Instance.Clock.SetTime(_TargetHour, _TargetMinute);
-                LevelManager.Instance.SetLevelGoalFinished();
-            }
+            return (Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0)) || Input.GetKeyDown(KeyCode.L);
         }
 
         public string GetLevelText()
