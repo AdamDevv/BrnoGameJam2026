@@ -33,7 +33,6 @@ namespace APGame.Managers
 
             _layers.Add(envLayer);
             envLayer.transform.localPosition = Vector3.forward * (-_layers.Count * 0.01f);
-            Debug.Log(envLayer.transform.localPosition);
         }
 
         public async UniTask PerformLastLayerAppearAnimation(EnvironmentLayerAppearAnimation appearAnimation)
