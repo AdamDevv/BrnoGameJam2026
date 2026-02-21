@@ -28,6 +28,8 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068696352456784
         _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
+        _EnvironmentLayerAppearAnimation: 0
     - rid: 5389068696352456784
       type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
       data:
@@ -42,6 +44,8 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068696352456792
         _ClockPrefab: {fileID: 3272982497105553409, guid: 6c3c592286d16f34081079c7787e5a0c, type: 3}
+        _EnvironmentPrefab: {fileID: 4651526460238825544, guid: de62e372d68d2bf4d832ad49399ad6cd, type: 3}
+        _EnvironmentLayerAppearAnimation: 1
     - rid: 5389068696352456787
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
@@ -49,6 +53,8 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184973
         _ClockPrefab: {fileID: 8428571735509381671, guid: 32995c61965792449b37542a769b7238, type: 3}
+        _EnvironmentPrefab: {fileID: 349551230177743779, guid: 4518b926b8f5b7a43afbfefa70f9424c, type: 3}
+        _EnvironmentLayerAppearAnimation: 0
     - rid: 5389068696352456792
       type: {class: RemoveStampGoal, ns: APGame.LevelFeatures.StampLevel, asm: APGame}
       data:
@@ -70,6 +76,8 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184975
         _ClockPrefab: {fileID: 1107895363258296150, guid: 3af21d27856deec4ab6d4d67f29d127d, type: 3}
+        _EnvironmentPrefab: {fileID: 2024239379412826993, guid: 2ba5db636b85d794ba1012b26bc92665, type: 3}
+        _EnvironmentLayerAppearAnimation: 0
     - rid: 5389068714943184975
       type: {class: RotateClockGoal, ns: APGame.LevelFeatures.RotateClock, asm: APGame}
       data:
@@ -83,6 +91,8 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184977
         _ClockPrefab: {fileID: 8875691682495472312, guid: a21363b0da2e5a14b8454066a7079dbe, type: 3}
+        _EnvironmentPrefab: {fileID: 4315868074765355473, guid: 72305bdf88006ce40b5bed87ceb54914, type: 3}
+        _EnvironmentLayerAppearAnimation: 0
     - rid: 5389068714943184977
       type: {class: DragDropNumbersGoal, ns: APGame.LevelFeatures.DragDropNumbers, asm: APGame}
       data:

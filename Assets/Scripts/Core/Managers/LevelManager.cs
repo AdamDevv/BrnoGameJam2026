@@ -32,14 +32,13 @@ namespace APGame.Managers
             {
                 return;
             }
-            
+
             _currentLevelIndex = levelIndex - 2;
             SetNextLevel();
             ClockManager.Instance.UpdateClockObject(_currentLevelData.ClockPrefab);
             _currentLevelGoal!.Initialize();
             ClockManager.Instance.Clock.transform.localScale = Vector3.one;
             UIManager.Instance.LevelText.text = _currentLevelGoal!.GetLevelText();
-            
         }
 
         public void SetLevelGoalFinished() => UniTask.Void(async cancellationToken => {
@@ -66,6 +65,12 @@ namespace APGame.Managers
             SetNextLevel();
             ClockManager.Instance.UpdateClockObject(_currentLevelData.ClockPrefab);
             _currentLevelGoal!.Initialize();
+
+            if (_currentLevelIndex != 0)
+            {
+                EnvironmentManager.Instance.AddEnvironmentLayer(_currentLevelData.EnvironmentPrefab);
+                await EnvironmentManager.Instance.PerformLastLayerAppearAnimation(_currentLevelData.EnvironmentLayerAppearAnimation);
+            }
 
             await UniTask.Yield();
             UIManager.Instance.LevelText.text = _currentLevelGoal!.GetLevelText();
