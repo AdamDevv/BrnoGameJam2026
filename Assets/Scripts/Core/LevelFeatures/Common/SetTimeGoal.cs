@@ -42,7 +42,7 @@ namespace APGame.LevelFeatures.Common
         {
             int currentTotalMinutes = _clock.HourHand.Value * 60 + _clock.MinuteHand.Value;
             int targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
-            return (Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0)) || Input.GetKeyDown(KeyCode.L);
+            return Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0);
         }
 
         public string GetLevelText()

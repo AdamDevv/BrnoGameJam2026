@@ -24,7 +24,7 @@ namespace APGame.LevelFeatures.RearrangedNumbers
             var minuteDiff = Mathf.Abs(_clock.MinuteHand.ValueSmooth - 40) / 60;
             var hourDiff = Mathf.Abs(_clock.HourHand.ValueSmooth - 11) / 12;
 
-            if (minuteDiff < MINUTE_TOLERANCE_PERCENTAGE && hourDiff < HOUR_TOLERANCE_PERCENTAGE && !Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.L))
+            if (minuteDiff < MINUTE_TOLERANCE_PERCENTAGE && hourDiff < HOUR_TOLERANCE_PERCENTAGE && !Input.GetMouseButton(0))
             {
                 LevelManager.Instance.SetLevelGoalFinished();
             }

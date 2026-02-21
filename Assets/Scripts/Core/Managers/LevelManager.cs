@@ -26,6 +26,22 @@ namespace APGame.Managers
             _currentLevelGoal?.Update();
         }
 
+        public void DebugSetLevel(int levelIndex)
+        {
+            if (levelIndex < 1 || levelIndex > GameplaySettings.Instance.Levels.Count)
+            {
+                return;
+            }
+            
+            _currentLevelIndex = levelIndex - 2;
+            SetNextLevel();
+            ClockManager.Instance.UpdateClockObject(_currentLevelData.ClockPrefab);
+            _currentLevelGoal!.Initialize();
+            ClockManager.Instance.Clock.transform.localScale = Vector3.one;
+            UIManager.Instance.LevelText.text = _currentLevelGoal!.GetLevelText();
+            
+        }
+
         public void SetLevelGoalFinished() => UniTask.Void(async cancellationToken => {
             GameManager.Instance.IsInputEnabled = false;
             _currentLevelGoal = null;

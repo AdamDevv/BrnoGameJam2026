@@ -8,7 +8,7 @@ namespace APGame.LevelFeatures.RotateClock
     [Serializable]
     public class RotateClockGoal : ILevelGoal
     {
-        private const int TOLERANCE_DEGREES = 2;
+        private const int TOLERANCE_DEGREES = 3;
 
         [SerializeField] private int _TargetClockRotation;
         [SerializeField] private int _DisplayedTargetHour;

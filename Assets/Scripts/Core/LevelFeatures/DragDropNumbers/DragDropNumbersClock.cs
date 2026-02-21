@@ -17,7 +17,7 @@ namespace APGame.LevelFeatures.DragDropNumbers
 
         public void SetTime(int hour, int minute)
         {
-            _HourHand.SetRotation(hour * 360f / 12/* + minute * 360f / 60 / 12*/);
+            _HourHand.SetRotation(hour * 360f / 12 /* + minute * 360f / 60 / 12*/);
             _MinuteHand.SetRotation(minute * 360f / 60);
 
             int[] randomizedNumberOrder = { 10, 8, 3, 12, 11, 6, 4, 9, 7, 2, 5, 1 };
@@ -42,7 +42,7 @@ namespace APGame.LevelFeatures.DragDropNumbers
             float x = Mathf.Cos(angleRadians);
             float y = Mathf.Sin(angleRadians);
 
-            Vector3 offset = new Vector3(x, y, 0) * 2.278f;
+            Vector3 offset = new Vector3(x, y, 0) * 3f;
 
             return transform.position + offset;
         }
