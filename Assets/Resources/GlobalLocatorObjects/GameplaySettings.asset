@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
   _Levels:
-  - rid: 5389068696352456787
   - rid: 5389068696352456783
   - rid: 5389068696352456785
+  - rid: 5389068696352456787
   references:
     version: 2
     RefIds:
