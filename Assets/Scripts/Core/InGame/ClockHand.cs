@@ -17,6 +17,8 @@ namespace APGame.InGame
             }
         }
 
+        public float ValueSmooth => (360 - transform.rotation.eulerAngles.z + 360 % 360) / 360 * _positionCount;
+
         public int PreviousValue { get; private set; }
 
         [SerializeField] private ClockHandType _ClockHandType;
@@ -41,7 +43,7 @@ namespace APGame.InGame
         private void OnMouseDown()
         {
             if (!GameManager.Instance.IsInputEnabled) return;
-            
+
             if (_ClockHandType == ClockHandType.Hour && ClockManager.Instance.Clock.ClockBehaviourType == ClockBehaviourType.HourDependent)
             {
                 float normalizedAngle = 360 - transform.rotation.eulerAngles.z + 360 % 360;

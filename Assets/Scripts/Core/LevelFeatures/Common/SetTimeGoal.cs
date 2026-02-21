@@ -9,11 +9,11 @@ namespace APGame.LevelFeatures.Common
     {
         private const int TOLERANCE_MINUTES = 2;
 
-        [SerializeField] private int _StartHour = 3;
-        [SerializeField] private int _StartMinute = 0;
+        [SerializeField] protected int _StartHour = 3;
+        [SerializeField] protected int _StartMinute = 0;
 
-        [SerializeField] private int _TargetHour;
-        [SerializeField] private int _TargetMinute;
+        [SerializeField] protected int _TargetHour;
+        [SerializeField] protected int _TargetMinute;
 
         public virtual void Initialize()
         {

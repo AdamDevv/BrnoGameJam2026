@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
   _Levels:
+  - rid: 5389068696352456787
   - rid: 5389068696352456783
   - rid: 5389068696352456785
-  - rid: 5389068696352456787
   references:
     version: 2
     RefIds:
     - rid: 5389068696352456783
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
+        _Comment: Set time without obstacle
         _LevelGoal:
           rid: 5389068696352456784
         _ClockPrefab: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
@@ -35,22 +36,17 @@ MonoBehaviour:
     - rid: 5389068696352456785
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
+        _Comment: Remove stamp
         _LevelGoal:
           rid: 5389068696352456792
         _ClockPrefab: {fileID: 7918991253149454273, guid: 6c3c592286d16f34081079c7787e5a0c, type: 3}
     - rid: 5389068696352456787
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
+        _Comment: Set time with rearranged numbers
         _LevelGoal:
-          rid: 5389068696352456788
-        _ClockPrefab: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
-    - rid: 5389068696352456788
-      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
-      data:
-        _StartHour: 3
-        _StartMinute: 0
-        _TargetHour: 4
-        _TargetMinute: 0
+          rid: 5389068714943184973
+        _ClockPrefab: {fileID: 3780312281477617127, guid: 32995c61965792449b37542a769b7238, type: 3}
     - rid: 5389068696352456792
       type: {class: RemoveStampGoal, ns: APGame.LevelFeatures.StampLevel, asm: APGame}
       data:
@@ -58,3 +54,10 @@ MonoBehaviour:
         _StartMinute: 38
         _TargetHour: 7
         _TargetMinute: 50
+    - rid: 5389068714943184973
+      type: {class: RearrangedNumbersGoal, ns: APGame.LevelFeatures.RearrangedNumbers, asm: APGame}
+      data:
+        _StartHour: 8
+        _StartMinute: 0
+        _TargetHour: 4
+        _TargetMinute: 30

@@ -9,6 +9,7 @@ namespace APGame.Models.DTO
     [Serializable]
     public class LevelData
     {
+        [SerializeField] private string _Comment;
         [SerializeReference] private ILevelGoal _LevelGoal;
         [SerializeField] [RequiredAsset] private Clock _ClockPrefab;
 
