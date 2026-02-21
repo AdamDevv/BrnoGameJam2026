@@ -1,7 +1,7 @@
 ﻿using System;
 using APGame.Abstractions;
-using APGame.Enums;
 using APX.Util.OdinAttributes;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace APGame.Models.DTO
@@ -12,12 +12,17 @@ namespace APGame.Models.DTO
         [SerializeField] private string _Comment;
         [SerializeReference] private ILevelGoal _LevelGoal;
         [SerializeField] [RequiredAsset] private GameObject _ClockPrefab;
-        [SerializeField] [RequiredAsset] private GameObject _EnvironmentPrefab;
-        [SerializeField] private EnvironmentLayerAppearAnimation _EnvironmentLayerAppearAnimation;
+
+        [SerializeField] [Space] private bool _MultipleEnvironments;
+
+        [SerializeField] [HideIf(nameof(_MultipleEnvironments))]
+        private EnvironmentData _EnvironmentData;
+
+        [SerializeField] [ShowIf(nameof(_MultipleEnvironments))]
+        private EnvironmentData[] _MultiEnvironmentData;
 
         public ILevelGoal LevelGoal => _LevelGoal;
         public GameObject ClockPrefab => _ClockPrefab;
-        public GameObject EnvironmentPrefab => _EnvironmentPrefab;
-        public EnvironmentLayerAppearAnimation EnvironmentLayerAppearAnimation => _EnvironmentLayerAppearAnimation;
+        public EnvironmentData[] EnvironmentData => _MultipleEnvironments ? _MultiEnvironmentData : new[] { _EnvironmentData };
     }
 }

@@ -4,5 +4,8 @@
     {
         SlideFromBottom,
         SlideFromTop,
+        SlideFromLeft,
+        SlideFromRight,
+        ZoomOut,
     }
 }

@@ -68,8 +68,7 @@ namespace APGame.Managers
 
             if (_currentLevelIndex != 0)
             {
-                EnvironmentManager.Instance.AddEnvironmentLayer(_currentLevelData.EnvironmentPrefab);
-                await EnvironmentManager.Instance.PerformLastLayerAppearAnimation(_currentLevelData.EnvironmentLayerAppearAnimation);
+                await EnvironmentManager.Instance.AddAndAnimateEnvironmentLayers(_currentLevelData.EnvironmentData);
             }
 
             await UniTask.Yield();
@@ -77,7 +76,7 @@ namespace APGame.Managers
 
             // Show animations
             UIManager.Instance.ShowLevelText();
-            await ClockManager.Instance.Clock.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).ToUniTask(cancellationToken: destroyCancellationToken);
+            await ClockManager.Instance.Clock!.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).ToUniTask(cancellationToken: destroyCancellationToken);
 
             await UniTask.WaitForSeconds(0.5f, cancellationToken: cancellationToken);
             GameManager.Instance.IsInputEnabled = true;

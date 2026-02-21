@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Levels:
   - rid: 5389068696352456783
+  - rid: 5389068714943184985
+  - rid: 5389068714943184987
   - rid: 5389068696352456785
   - rid: 5389068714943184974
   - rid: 5389068696352456787
@@ -28,8 +30,11 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068696352456784
         _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
-        _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
-        _EnvironmentLayerAppearAnimation: 0
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData: []
     - rid: 5389068696352456784
       type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
       data:
@@ -44,8 +49,11 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068696352456792
         _ClockPrefab: {fileID: 3272982497105553409, guid: 6c3c592286d16f34081079c7787e5a0c, type: 3}
-        _EnvironmentPrefab: {fileID: 4651526460238825544, guid: de62e372d68d2bf4d832ad49399ad6cd, type: 3}
-        _EnvironmentLayerAppearAnimation: 1
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 4651526460238825544, guid: de62e372d68d2bf4d832ad49399ad6cd, type: 3}
+          _EnvironmentLayerAppearAnimation: 1
+        _MultiEnvironmentData: []
     - rid: 5389068696352456787
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
@@ -53,8 +61,11 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184973
         _ClockPrefab: {fileID: 8428571735509381671, guid: 32995c61965792449b37542a769b7238, type: 3}
-        _EnvironmentPrefab: {fileID: 349551230177743779, guid: 4518b926b8f5b7a43afbfefa70f9424c, type: 3}
-        _EnvironmentLayerAppearAnimation: 0
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 349551230177743779, guid: 4518b926b8f5b7a43afbfefa70f9424c, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData: []
     - rid: 5389068696352456792
       type: {class: RemoveStampGoal, ns: APGame.LevelFeatures.StampLevel, asm: APGame}
       data:
@@ -76,8 +87,11 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184975
         _ClockPrefab: {fileID: 1107895363258296150, guid: 3af21d27856deec4ab6d4d67f29d127d, type: 3}
-        _EnvironmentPrefab: {fileID: 2024239379412826993, guid: 2ba5db636b85d794ba1012b26bc92665, type: 3}
-        _EnvironmentLayerAppearAnimation: 0
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 2024239379412826993, guid: 2ba5db636b85d794ba1012b26bc92665, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData: []
     - rid: 5389068714943184975
       type: {class: RotateClockGoal, ns: APGame.LevelFeatures.RotateClock, asm: APGame}
       data:
@@ -91,8 +105,11 @@ MonoBehaviour:
         _LevelGoal:
           rid: 5389068714943184977
         _ClockPrefab: {fileID: 8875691682495472312, guid: a21363b0da2e5a14b8454066a7079dbe, type: 3}
-        _EnvironmentPrefab: {fileID: 4315868074765355473, guid: 72305bdf88006ce40b5bed87ceb54914, type: 3}
-        _EnvironmentLayerAppearAnimation: 0
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 4315868074765355473, guid: 72305bdf88006ce40b5bed87ceb54914, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData: []
     - rid: 5389068714943184977
       type: {class: DragDropNumbersGoal, ns: APGame.LevelFeatures.DragDropNumbers, asm: APGame}
       data:
@@ -100,3 +117,53 @@ MonoBehaviour:
         _RequiredMinuteNumber: 8
         _StartHourNumberPosition: 9
         _StartMinuteNumberPosition: 5
+    - rid: 5389068714943184985
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _Comment: Stars
+        _LevelGoal:
+          rid: 5389068714943184986
+        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _MultipleEnvironments: 1
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData:
+        - _EnvironmentPrefab: {fileID: 3885761319433821508, guid: c9440ef97debcbc45ac477c553bb412a, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 1832444450659038878, guid: c4a76dc64de4c244a8dd742c1f0d5fb3, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 9131395339474914586, guid: 4c7d8f9ac810d494da4c730b0821f072, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+    - rid: 5389068714943184986
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 3
+        _TargetMinute: 10
+    - rid: 5389068714943184987
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _Comment: Stars
+        _LevelGoal:
+          rid: 5389068714943184988
+        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 8707843146768640746, guid: 3df4d8414a18fce4e8362f185189998a, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData:
+        - _EnvironmentPrefab: {fileID: 3885761319433821508, guid: c9440ef97debcbc45ac477c553bb412a, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 1832444450659038878, guid: c4a76dc64de4c244a8dd742c1f0d5fb3, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 9131395339474914586, guid: 4c7d8f9ac810d494da4c730b0821f072, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+    - rid: 5389068714943184988
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 3
+        _TargetMinute: 10

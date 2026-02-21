@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using APGame.Enums;
+using APGame.Models.DTO;
 using APGame.Services.Settings;
 using APX.Extra.Misc;
 using APX.Managers.GameObjects;
@@ -24,18 +25,34 @@ namespace APGame.Managers
                 Destroy(child.gameObject);
             }
 
-            AddEnvironmentLayer(GameplaySettings.Instance.Levels.First().EnvironmentPrefab);
+            foreach (EnvironmentData e in GameplaySettings.Instance.Levels.First().EnvironmentData)
+            {
+                AddEnvironmentLayer(e.EnvironmentPrefab);
+            }
         }
 
         public void AddEnvironmentLayer(GameObject environmentPrefab)
         {
             var envLayer = Instantiate(environmentPrefab, _EnvironmentLayersRoot);
-
             _layers.Add(envLayer);
             envLayer.transform.localPosition = Vector3.forward * (-_layers.Count * 0.01f);
         }
 
-        public async UniTask PerformLastLayerAppearAnimation(EnvironmentLayerAppearAnimation appearAnimation)
+        public async UniTask AddAndAnimateEnvironmentLayers(EnvironmentData[] environmentDatas)
+        {
+            var animationTasks = new List<UniTask>();
+            foreach (var data in environmentDatas)
+            {
+                AddEnvironmentLayer(data.EnvironmentPrefab);
+                animationTasks.Add(PerformLastLayerAppearAnimation(data.EnvironmentLayerAppearAnimation));
+                await UniTask.WaitForSeconds(0.2f);
+            }
+
+            await UniTask.WhenAll(animationTasks);
+        }
+
+
+        private async UniTask PerformLastLayerAppearAnimation(EnvironmentLayerAppearAnimation appearAnimation)
         {
             var layer = _layers.Last();
 
@@ -56,6 +73,18 @@ namespace APGame.Managers
                 case EnvironmentLayerAppearAnimation.SlideFromTop:
                     layer.transform.localPosition = layer.transform.localPosition.WithY(slideAnimStartDistance);
                     await layer.transform.DOLocalMove(layer.transform.localPosition.WithY(0), slideAnimDuration).SetEase(slideAnimEase).ToUniTask(cancellationToken: destroyCancellationToken);
+                    break;
+                case EnvironmentLayerAppearAnimation.SlideFromLeft:
+                    layer.transform.localPosition = layer.transform.localPosition.WithX(-slideAnimStartDistance);
+                    await layer.transform.DOLocalMove(layer.transform.localPosition.WithX(0), slideAnimDuration).SetEase(slideAnimEase).ToUniTask(cancellationToken: destroyCancellationToken);
+                    break;
+                case EnvironmentLayerAppearAnimation.SlideFromRight:
+                    layer.transform.localPosition = layer.transform.localPosition.WithX(slideAnimStartDistance);
+                    await layer.transform.DOLocalMove(layer.transform.localPosition.WithX(0), slideAnimDuration).SetEase(slideAnimEase).ToUniTask(cancellationToken: destroyCancellationToken);
+                    break;
+                case EnvironmentLayerAppearAnimation.ZoomOut:
+                    layer.transform.localScale = Vector3.one * 20;
+                    await layer.transform.DOScale(Vector3.one, slideAnimDuration).SetEase(Ease.OutCubic).ToUniTask(cancellationToken: destroyCancellationToken);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(appearAnimation), appearAnimation, null);
