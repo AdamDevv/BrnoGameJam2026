@@ -70,7 +70,7 @@ namespace APGame.InGame
         public void SetTime(int hours, int minutes)
         {
             _MinuteHand.SetValue(minutes);
-            _HourHand.SetValue(hours);
+            _HourHand.SetValueSmooth(hours + (minutes / 60f));
         }
     }
 }

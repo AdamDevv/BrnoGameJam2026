@@ -13,24 +13,48 @@ MonoBehaviour:
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
   _Levels:
-  - rid: 5389068696352456780
-  - rid: 5389068696352456781
-  - rid: 5389068696352456782
+  - rid: 5389068696352456783
+  - rid: 5389068696352456785
+  - rid: 5389068696352456787
   references:
     version: 2
     RefIds:
-    - rid: 5389068696352456780
+    - rid: 5389068696352456783
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _LevelGoal:
+          rid: 5389068696352456784
+        _ClockPrefab: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+    - rid: 5389068696352456784
       type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
       data:
-        _TargetHour: 9
-        _TargetMinute: 0
-    - rid: 5389068696352456781
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 8
+        _TargetMinute: 30
+    - rid: 5389068696352456785
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _LevelGoal:
+          rid: 5389068696352456786
+        _ClockPrefab: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+    - rid: 5389068696352456786
       type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
       data:
+        _StartHour: 1
+        _StartMinute: 38
         _TargetHour: 7
-        _TargetMinute: 0
-    - rid: 5389068696352456782
+        _TargetMinute: 50
+    - rid: 5389068696352456787
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _LevelGoal:
+          rid: 5389068696352456788
+        _ClockPrefab: {fileID: 7130975279418744291, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+    - rid: 5389068696352456788
       type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
       data:
-        _TargetHour: 11
-        _TargetMinute: 45
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 4
+        _TargetMinute: 0

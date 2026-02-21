@@ -8,7 +8,7 @@ namespace APGame.LevelFeatures.Common
     [Serializable]
     public class SetTimeGoal : ILevelGoal
     {
-        private const float TOLERANCE = 0.01f;
+        private const int TOLERANCE_MINUTES = 2;
 
         [SerializeField] private int _StartHour = 3;
         [SerializeField] private int _StartMinute = 0;
@@ -23,16 +23,13 @@ namespace APGame.LevelFeatures.Common
 
         public void Update()
         {
-            // var currentTotalMinutes = ClockManager.Instance.Clock.HourHand.Value * 60 + ClockManager.Instance.Clock.MinuteHand.Value;
-            // var targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
-            // if (Mathf.Abs(currentTotalMinutes - targetTotalMinutes) > TOLERANCE)
-            // {
-            //     _ = LevelManager.Instance.SetLevelGoalFinished();
-            // }
-
-            if (ClockManager.Instance.Clock.HourHand.Value == _TargetHour && ClockManager.Instance.Clock.MinuteHand.Value == _TargetMinute)
+            int currentTotalMinutes = ClockManager.Instance.Clock.HourHand.Value * 60 + ClockManager.Instance.Clock.MinuteHand.Value;
+            int targetTotalMinutes = _TargetHour * 60 + _TargetMinute;
+            
+            if ((Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0)) || Input.GetKeyDown(KeyCode.L))
             {
-                // _ = LevelManager.Instance.SetLevelGoalFinished();
+                ClockManager.Instance.Clock.SetTime(_TargetHour, _TargetMinute);
+                LevelManager.Instance.SetLevelGoalFinished();
             }
         }
 

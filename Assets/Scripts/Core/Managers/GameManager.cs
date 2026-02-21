@@ -1,7 +1,5 @@
-using System;
-using APGame.Abstractions;
-using APGame.InGame;
 using APX.Managers.GameObjects;
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -10,19 +8,19 @@ namespace APGame.Managers
 {
     public class GameManager : ASingleton<GameManager>
     {
-        [SerializeField] [Required] private TMP_Text _LevelText;
+        public bool IsInputEnabled { get; set; } = false;
+        
         [SerializeField] [Required] private TMP_Text _DebugTimeText;
-
-        public TMP_Text LevelText => _LevelText;
 
         protected override void Initialize()
         {
             base.Initialize();
         }
 
-        private void Start()
+        private async UniTask Start()
         {
-            _ = LevelManager.Instance.SetLevelGoalFinished();
+            await UniTask.WaitForSeconds(0.3f);
+            LevelManager.Instance.SetLevelGoalFinished();
         }
 
         public override void Dispose()
@@ -32,7 +30,14 @@ namespace APGame.Managers
 
         private void Update()
         {
-            _DebugTimeText.text = $"{ClockManager.Instance.Clock.HourHand.Value:00}:{ClockManager.Instance.Clock.MinuteHand.Value:00}";
+            if (ClockManager.Instance.Clock)
+            {
+                _DebugTimeText.text = $"{ClockManager.Instance.Clock.HourHand.Value:00}:{ClockManager.Instance.Clock.MinuteHand.Value:00}";
+            }
+            else
+            {
+                _DebugTimeText.text = "";
+            }
         }
     }
 }

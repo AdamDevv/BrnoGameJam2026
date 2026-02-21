@@ -1,6 +1,4 @@
-﻿using TMPro;
-
-namespace APGame.Abstractions
+﻿namespace APGame.Abstractions
 {
     public interface ILevelGoal
     {

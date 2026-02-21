@@ -26,7 +26,7 @@ namespace APGame.InGame
         private int _value;
         private float _currentDragAngleOffset;
 
-        private void Start()
+        private void Awake()
         {
             _positionCount = _ClockHandType switch
             {
@@ -40,6 +40,8 @@ namespace APGame.InGame
 
         private void OnMouseDown()
         {
+            if (!GameManager.Instance.IsInputEnabled) return;
+            
             if (_ClockHandType == ClockHandType.Hour && ClockManager.Instance.Clock.ClockBehaviourType == ClockBehaviourType.HourDependent)
             {
                 float normalizedAngle = 360 - transform.rotation.eulerAngles.z + 360 % 360;
@@ -49,13 +51,10 @@ namespace APGame.InGame
             }
         }
 
-        private void OnMouseUp()
-        {
-            _currentDragAngleOffset = 0;
-        }
-
         private void OnMouseDrag()
         {
+            if (!GameManager.Instance.IsInputEnabled) return;
+
             Vector2 mousePos = Input.mousePosition;
             Vector2 worldMousePos = CameraManager.MainCamera.ScreenToWorldPoint(mousePos);
             Vector2 direction = worldMousePos - (Vector2)transform.position;

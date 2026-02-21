@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using APGame.Abstractions;
+using APGame.Models.DTO;
 using APX.GlobalLocating.Abstractions;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ namespace APGame.Services.Settings
 {
     public class GameplaySettings : AGlobalLocatorObject<GameplaySettings>
     {
-        [SerializeReference] private List<ILevelGoal> _Levels;
+        [SerializeReference] private List<LevelData> _Levels;
 
-        public List<ILevelGoal> Levels => _Levels;
+        public IReadOnlyList<LevelData> Levels => _Levels;
     }
 }
