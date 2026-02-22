@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Levels:
   - rid: 5389068696352456783
+  - rid: 5389068734112989184
+  - rid: 5389068734112989186
   - rid: 5389068696352456785
   - rid: 5389068714943184974
   - rid: 5389068696352456787
@@ -161,3 +163,47 @@ MonoBehaviour:
         _StartMinute: 45
         _TargetHour: 4
         _TargetMinute: 55
+    - rid: 5389068734112989184
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _Comment: Tree branches
+        _LevelGoal:
+          rid: 5389068734112989185
+        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _MultipleEnvironments: 1
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData:
+        - _EnvironmentPrefab: {fileID: 3841530478320943227, guid: a7b91dec31013954eb209c0924534c26, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 1952614166364435068, guid: 4d2be2bb3f09988458c5581e1d2dd327, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        - _EnvironmentPrefab: {fileID: 8680514019862360993, guid: 7db08c21a70a184448fc0675a1b80dbf, type: 3}
+          _EnvironmentLayerAppearAnimation: 4
+    - rid: 5389068734112989185
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 8
+        _TargetMinute: 30
+    - rid: 5389068734112989186
+      type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
+      data:
+        _Comment: Golf
+        _LevelGoal:
+          rid: 5389068734112989187
+        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+        _MultipleEnvironments: 0
+        _EnvironmentData:
+          _EnvironmentPrefab: {fileID: 5555898649828471712, guid: 3e5fe77ec8f408644b81fa4eb8b06153, type: 3}
+          _EnvironmentLayerAppearAnimation: 0
+        _MultiEnvironmentData: []
+    - rid: 5389068734112989187
+      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
+      data:
+        _StartHour: 3
+        _StartMinute: 0
+        _TargetHour: 8
+        _TargetMinute: 30
