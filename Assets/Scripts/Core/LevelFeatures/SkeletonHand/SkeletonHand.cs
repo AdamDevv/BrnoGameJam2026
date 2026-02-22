@@ -58,26 +58,24 @@ namespace APGame.LevelFeatures.SkeletonHand
                     .ToUniTask(cancellationToken: cancellationToken);
 
                 float n = 0;
-                await DOTween.To(() => n, x => n = x, 1, 2f)
+                Vector3 startPos = transform.position;
+                Quaternion startRot = transform.rotation;
+                Vector3 startScale = transform.localScale;
+                await DOTween.To(() => n, x => n = x, 1, 1f)
                     .OnUpdate(() => {
-                        if (IsClockHandAttached) return;
-                        if (n > 0.15f)
-                        {
-                            Destroy(transform.GetComponent<Rigidbody2D>());
-                            transform.parent = _clock.HourHand.transform;
-                            IsClockHandAttached = true;
-                            return;
-                        }
-
                         var targetPosition = _clock.HourHand.transform.position;
                         var targetRotation = _clock.HourHand.transform.rotation;
                         var targetScale = Vector3.one * 0.8f;
-                        transform.position = Vector3.Lerp(transform.position, targetPosition, n);
-                        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, n);
-                        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, n);
+                        transform.position = Vector3.Lerp(startPos, targetPosition, n);
+                        transform.rotation = Quaternion.Lerp(startRot, targetRotation, n);
+                        transform.localScale = Vector3.Lerp(startScale, targetScale, n);
                     })
                     .SetEase(Ease.InOutCubic)
                     .ToUniTask(cancellationToken: cancellationToken);
+
+                Destroy(transform.GetComponent<Rigidbody2D>());
+                transform.parent = _clock.HourHand.transform;
+                IsClockHandAttached = true;
             }, destroyCancellationToken);
         }
     }
