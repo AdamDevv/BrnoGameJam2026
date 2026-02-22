@@ -168,8 +168,8 @@ MonoBehaviour:
       data:
         _Comment: Tree branches
         _LevelGoal:
-          rid: 5389068734112989185
-        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+          rid: 5389068734670307404
+        _ClockPrefab: {fileID: 6659034885385425089, guid: 05dbd664a512c094881568467801c5d5, type: 3}
         _MultipleEnvironments: 1
         _EnvironmentData:
           _EnvironmentPrefab: {fileID: 5725436771520194956, guid: 016a25df62a3799428de084dd9a2ce89, type: 3}
@@ -181,13 +181,6 @@ MonoBehaviour:
           _EnvironmentLayerAppearAnimation: 0
         - _EnvironmentPrefab: {fileID: 8680514019862360993, guid: 7db08c21a70a184448fc0675a1b80dbf, type: 3}
           _EnvironmentLayerAppearAnimation: 4
-    - rid: 5389068734112989185
-      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
-      data:
-        _StartHour: 3
-        _StartMinute: 0
-        _TargetHour: 8
-        _TargetMinute: 30
     - rid: 5389068734112989186
       type: {class: LevelData, ns: APGame.Models.DTO, asm: APGame}
       data:
@@ -207,3 +200,10 @@ MonoBehaviour:
         _StartMinute: 0
         _TargetHour: 8
         _TargetMinute: 30
+    - rid: 5389068734670307404
+      type: {class: TreeBranchGoal, ns: APGame.LevelFeatures.TreeBranch, asm: APGame}
+      data:
+        _StartHour: 5
+        _StartMinute: 35
+        _TargetHour: 11
+        _TargetMinute: 5

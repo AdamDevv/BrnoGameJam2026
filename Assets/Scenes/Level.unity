@@ -2356,7 +2356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5073745637675792620, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
       propertyPath: m_IsActive
@@ -2422,6 +2422,10 @@ PrefabInstance:
     - target: {fileID: 5555898649828471712, guid: 3e5fe77ec8f408644b81fa4eb8b06153, type: 3}
       propertyPath: m_Name
       value: Environment_Meadow_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555898649828471712, guid: 3e5fe77ec8f408644b81fa4eb8b06153, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

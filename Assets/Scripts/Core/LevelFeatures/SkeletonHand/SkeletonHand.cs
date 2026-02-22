@@ -18,7 +18,6 @@ namespace APGame.LevelFeatures.SkeletonHand
         private Vector3 _startRot;
         private Clock _clock;
 
-
         private void Start()
         {
             _clock = ClockManager.Instance.Clock as Clock;
@@ -27,6 +26,7 @@ namespace APGame.LevelFeatures.SkeletonHand
 
         private void OnMouseDown()
         {
+            if (!GameManager.Instance.IsInputEnabled) return;
             if (_isDetached) return;
 
             transform.DOKill();
