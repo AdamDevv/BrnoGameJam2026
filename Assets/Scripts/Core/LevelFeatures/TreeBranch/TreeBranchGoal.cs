@@ -24,7 +24,6 @@ namespace APGame.LevelFeatures.TreeBranch
         {
             if (_branchOnes.Length == 0) return;
             
-            Debug.Log(_branchOnes.Length);
             if (IsTimeWithinTolerance() && _branchOnes.All(s => s.IsInPlace))
             {
                 FinishLevel();

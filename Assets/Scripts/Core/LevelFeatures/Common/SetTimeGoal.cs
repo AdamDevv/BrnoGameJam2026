@@ -45,7 +45,7 @@ namespace APGame.LevelFeatures.Common
             return Mathf.Abs(currentTotalMinutes - targetTotalMinutes) < TOLERANCE_MINUTES && !Input.GetMouseButton(0);
         }
 
-        public string GetLevelText()
+        public virtual string GetLevelText()
         {
             return $"Set time to {_TargetHour}:{_TargetMinute:00}";
         }

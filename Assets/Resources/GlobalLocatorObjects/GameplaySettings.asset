@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Levels:
   - rid: 5389068696352456783
-  - rid: 5389068734112989184
   - rid: 5389068734112989186
+  - rid: 5389068734112989184
   - rid: 5389068696352456785
   - rid: 5389068714943184974
   - rid: 5389068696352456787
@@ -186,20 +186,13 @@ MonoBehaviour:
       data:
         _Comment: Golf
         _LevelGoal:
-          rid: 5389068734112989187
-        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+          rid: 5389068734670307405
+        _ClockPrefab: {fileID: 9220024532660305071, guid: 32213b293754f5e458293224e7dc65a6, type: 3}
         _MultipleEnvironments: 0
         _EnvironmentData:
           _EnvironmentPrefab: {fileID: 5555898649828471712, guid: 3e5fe77ec8f408644b81fa4eb8b06153, type: 3}
           _EnvironmentLayerAppearAnimation: 0
         _MultiEnvironmentData: []
-    - rid: 5389068734112989187
-      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
-      data:
-        _StartHour: 3
-        _StartMinute: 0
-        _TargetHour: 8
-        _TargetMinute: 30
     - rid: 5389068734670307404
       type: {class: TreeBranchGoal, ns: APGame.LevelFeatures.TreeBranch, asm: APGame}
       data:
@@ -207,3 +200,10 @@ MonoBehaviour:
         _StartMinute: 35
         _TargetHour: 11
         _TargetMinute: 5
+    - rid: 5389068734670307405
+      type: {class: GolfGoal, ns: APGame.LevelFeatures.Golf, asm: APGame}
+      data:
+        _StartHour: 6
+        _StartMinute: 0
+        _TargetHour: 0
+        _TargetMinute: 0

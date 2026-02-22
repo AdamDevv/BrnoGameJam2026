@@ -2423,10 +2423,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment_Meadow_2
       objectReference: {fileID: 0}
-    - target: {fileID: 5555898649828471712, guid: 3e5fe77ec8f408644b81fa4eb8b06153, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
