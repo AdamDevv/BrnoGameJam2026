@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Levels:
   - rid: 5389068696352456783
-  - rid: 5389068714943184985
-  - rid: 5389068714943184995
   - rid: 5389068696352456785
   - rid: 5389068714943184974
   - rid: 5389068696352456787
   - rid: 5389068714943184976
+  - rid: 5389068714943184985
+  - rid: 5389068714943184995
   references:
     version: 2
     RefIds:
@@ -140,20 +140,13 @@ MonoBehaviour:
       data:
         _Comment: Skeleton hand
         _LevelGoal:
-          rid: 5389068714943184996
-        _ClockPrefab: {fileID: 2483806215414659619, guid: 8d8f81c0423db1c43a59a4456564df7b, type: 3}
+          rid: 5389068714943184998
+        _ClockPrefab: {fileID: 1880169816417693044, guid: c2dbceb1f07bafc4a9d0bec1987c5d76, type: 3}
         _MultipleEnvironments: 0
         _EnvironmentData:
-          _EnvironmentPrefab: {fileID: 8707843146768640746, guid: 3df4d8414a18fce4e8362f185189998a, type: 3}
+          _EnvironmentPrefab: {fileID: 2946097653450961110, guid: 3df4d8414a18fce4e8362f185189998a, type: 3}
           _EnvironmentLayerAppearAnimation: 0
         _MultiEnvironmentData: []
-    - rid: 5389068714943184996
-      type: {class: SetTimeGoal, ns: APGame.LevelFeatures.Common, asm: APGame}
-      data:
-        _StartHour: 0
-        _StartMinute: 0
-        _TargetHour: 0
-        _TargetMinute: 10
     - rid: 5389068714943184997
       type: {class: StarCreateNumbersGoal, ns: APGame.LevelFeatures.StarCreateNumbers, asm: APGame}
       data:
@@ -161,3 +154,10 @@ MonoBehaviour:
         _StartMinute: 45
         _TargetHour: 6
         _TargetMinute: 15
+    - rid: 5389068714943184998
+      type: {class: SkeletonHandGoal, ns: APGame.LevelFeatures.SkeletonHand, asm: APGame}
+      data:
+        _StartHour: 0
+        _StartMinute: 45
+        _TargetHour: 4
+        _TargetMinute: 55

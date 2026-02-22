@@ -11,7 +11,7 @@ namespace APGame.Managers
         protected override void Initialize()
         {
             base.Initialize();
-            Destroy(GameObject.Find("DefaultClock"));
+            Destroy(GameObject.Find("ClockDefault"));
         }
 
         public void UpdateClockObject(GameObject clockPrefab)
