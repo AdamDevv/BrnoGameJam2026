@@ -1,6 +1,8 @@
 using System;
 using APGame.Enums;
 using APGame.Managers;
+using APX.Extra.Misc;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace APGame.InGame
@@ -27,6 +29,7 @@ namespace APGame.InGame
         private Clock _clock;
         private int _value;
         private float _currentDragAngleOffset;
+        private float _z;
 
         private void Awake()
         {
@@ -38,11 +41,16 @@ namespace APGame.InGame
             };
             _positionAngle = 360 / _positionCount;
             UpdateValueByRotation();
+            _z = transform.position.z;
         }
 
         private void Start()
         {
             _clock = ClockManager.Instance.Clock as Clock;
+            UniTask.Void(async cancellationToken => {
+                await UniTask.WaitForSeconds(3f, cancellationToken: cancellationToken);
+                transform.position = transform.position.WithZ(_z);
+            }, destroyCancellationToken);
         }
 
         private void OnMouseDown()
